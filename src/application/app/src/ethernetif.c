@@ -18,7 +18,7 @@
   */
 
 /* Includes ------------------------------------------------------------------*/
-#include "main.h"
+
 #include "lwip/opt.h"
 #include "lwip/mem.h"
 #include "lwip/memp.h"
@@ -29,6 +29,10 @@
 #include "ethernetif.h"
 #include <string.h>
 #include "bsp.h"
+
+
+#include "stm32f2xx_hal.h"
+#include "stm32f2xx_hal_conf.h"
 
 
 extern const SYS_FUNC sys_func;

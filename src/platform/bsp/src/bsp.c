@@ -24,6 +24,8 @@
 #include <stdio.h>
 //#endif
 #include <string.h>
+#include "fatfs.h"
+#include "lwip.h"
 
 
 uint8_t buf_com6[128];
@@ -177,6 +179,7 @@ static uint32_t get_msec(void);
 static void feed_wdg(void);
 			
 void eth_gpio_init(void);
+static void sdio_gpio_init(void);
 	
 const SYS_FUNC sys_func = {
 	get_sec,
@@ -241,6 +244,13 @@ void bsp_init(void)
 	
 	rtc_i2c_init();
 	eth_gpio_init();
+	sdio_gpio_init();
+	sdio_init();
+	
+	
+	MX_FATFS_Init();
+	MX_LWIP_Init();
+	tcp_echoserver_init();
 }
 
 static void feed_wdg(void)
@@ -566,7 +576,45 @@ void eth_gpio_init(void)
 
 	eth_gpio.port = GPIO_ETH_MDIO;
 	gpio_init(&eth_gpio);
+	
+	eth_gpio.config = OUTPUT_PUSH_PULL;
+	eth_gpio.port = GPIO_ETH_NRST;
+	tmp = 1;
+	gpio_init(&eth_gpio);
+	gpio_output_low(&eth_gpio);
+	gpio_output_high(&eth_gpio);
 }
+
+
+static void sdio_gpio_init(void)
+{
+	uint8_t tmp8 = GPIO_SDIO_CMD_AF;
+	gpio_dev_t sdio_gpio = {.port = GPIO_SDIO_CMD,.config = ALTERNATE_MODE,.priv = &tmp8};
+	
+	gpio_init(&sdio_gpio);
+	
+	sdio_gpio.port = GPIO_SDIO_CK;
+	tmp8 = GPIO_SDIO_CK_AF;
+	gpio_init(&sdio_gpio);
+	
+	sdio_gpio.port = GPIO_SDIO_D0;
+	tmp8 = GPIO_SDIO_D0_AF;
+	gpio_init(&sdio_gpio);
+	
+	sdio_gpio.port = GPIO_SDIO_D1;
+	tmp8 = GPIO_SDIO_D1_AF;
+	gpio_init(&sdio_gpio);
+	
+	sdio_gpio.port = GPIO_SDIO_D2;
+	tmp8 = GPIO_SDIO_D2_AF;
+	gpio_init(&sdio_gpio);
+	
+	sdio_gpio.port = GPIO_SDIO_D3;
+	tmp8 = GPIO_SDIO_D3_AF;
+	gpio_init(&sdio_gpio);
+}
+
+
 
 uint32_t get_msec(void)
 {

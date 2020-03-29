@@ -33,6 +33,7 @@
 #include "lwip/netif.h"
 #include "lwip/timeouts.h"
 #include "ethernetif.h"
+#include "stm32f2xx_hal.h"
 
 /* Includes for RTOS ---------------------------------------------------------*/
 #if WITH_RTOS

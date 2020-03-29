@@ -21,6 +21,7 @@
 #include <string.h>
 
 #include "driver.h"
+#include "lwip.h"
 
 extern const SYS_FUNC sys_func;
 
@@ -59,6 +60,8 @@ void task_test(void)
 //	
 
 		sys_func.feed_wdg();
+		
+		MX_LWIP_Process();
 		if(_sec_maintian != sys_func.sys_get_sec()){
 			_sec_maintian = sys_func.sys_get_sec();
 			//周期性显示LED的开关

@@ -289,25 +289,6 @@ int32_t uart_init(uart_dev_t *uart)
 	LL_USART_ConfigAsyncMode(COM_TYPE[uart->port]);
 	LL_USART_EnableIT_RXNE(COM_TYPE[uart->port]);
 	
-	switch(uart->port){
-	case E_COM2:
-	case E_COM3:
-	case E_COM4:
-	case E_COM5:
-	case E_COM7:
-	case E_COM8:
-		LL_USART_SetBaudRate(COM_TYPE[uart->port],42000000,LL_USART_OVERSAMPLING_16,s_uart_init.BaudRate);
-		break;
-		
-	case E_COM1:
-	case E_COM6:
-		LL_USART_SetBaudRate(COM_TYPE[uart->port],84000000,LL_USART_OVERSAMPLING_16,s_uart_init.BaudRate);
-		break;
-		
-	default:
-		break;
-	}
-	
 	LL_USART_Enable(COM_TYPE[uart->port]);
 
 	ret = 0;

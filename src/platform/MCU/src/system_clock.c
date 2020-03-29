@@ -29,9 +29,9 @@ void system_clock_init(void)
 	LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SYSCFG);
 	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
 	NVIC_SetPriorityGrouping(3);
-	LL_FLASH_SetLatency(LL_FLASH_LATENCY_5);
+	LL_FLASH_SetLatency(LL_FLASH_LATENCY_4);
 
-	if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_5){
+	if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_4){
 		while(1);//Error_Handler();  
 	}
 
@@ -50,7 +50,7 @@ void system_clock_init(void)
 	
 	LL_RCC_EnableRTC();
 
-	LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_25, 336, LL_RCC_PLLP_DIV_2);
+	LL_RCC_PLL_ConfigDomain_SYS(LL_RCC_PLLSOURCE_HSE, LL_RCC_PLLM_DIV_25, 240, LL_RCC_PLLP_DIV_2);
 	LL_RCC_PLL_Enable();
 
 	/* Wait till PLL is ready */
@@ -63,12 +63,26 @@ void system_clock_init(void)
 
 	/* Wait till System clock is ready */
 	while(LL_RCC_GetSysClkSource() != LL_RCC_SYS_CLKSOURCE_STATUS_PLL);
+	
+	LL_Init1msTick(120000000);
+	LL_SYSTICK_SetClkSource(LL_SYSTICK_CLKSOURCE_HCLK);
+	LL_SetSystemCoreClock(120000000);
+	LL_SYSTICK_EnableIT();
 
 }
 
 void system_tick_init(void)
 {
-	SysTick_Config(168000000);
+	SysTick_Config(120000000);
+}
+static uint32_t _msec = 0;
+
+void SysTick_Handler(void)
+{
+	_msec++;
 }
 
-
+uint32_t HAL_GetTick(void)
+{
+	return _msec;
+}

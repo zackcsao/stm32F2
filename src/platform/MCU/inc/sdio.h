@@ -1,23 +1,23 @@
 /*********************************************************************
 *
-*	Copyright (c)dreamczf@aliyun.com
+*	Copyright (c) 2009,dreamczf@aliyun.com
 *	All rights reserved.
 *
-*      Filename:	system_stm32f4xx_it.h
+*      Filename:	sdio.h
 *      Abstract:	简要描述文件的内容
 *
-*      Filename:	system_stm32f4xx_it.h
+*      Filename:	sdio.h
 *        Author:	caozhaofei
 *       Version:	0.0.1
-*          Date:	2017-11-06 10:04:59
+*          Date:	2019-06-09 13:40:23
 *   Description:	修改说明
 *
 *
 *********************************************************************/
 
-#ifndef __SYSTEM_STM32F4XX_IT_H__
-#define __SYSTEM_STM32F4XX_IT_H__
+#ifndef __SDIO_H__
+#define __SDIO_H__
 
-
-#endif //__SYSTEM_STM32F4XX_IT_H__
+void sdio_init(void);
+#endif //__SDIO_H__
 
