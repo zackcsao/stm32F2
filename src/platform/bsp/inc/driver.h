@@ -20,7 +20,6 @@
 
 #include "uart.h"
 #include "spi.h"
-#include "adc.h"
 #include "i2c.h"
 #include "timer.h"
 #include "gpio.h"
@@ -29,6 +28,6 @@
 #include "iwdg.h"
 
 #include "drv_8025t.h"
-
+#include "sdio.h"
 #endif //__DRIVER_H__
 
