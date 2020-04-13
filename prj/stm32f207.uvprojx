@@ -337,7 +337,7 @@
               <MiscControls></MiscControls>
               <Define>STM32F207xx,USE_HAL_DRIVER,USE_FULL_LL_DRIVER</Define>
               <Undefine></Undefine>
-              <IncludePath>..\src\application\app\inc;..\src\platform\driver\inc;..\src\platform\bsp\inc;..\src\platform\MCU\inc;..\src\platform\middleware\inc;..\src\platform\stdPeripheral\CMSIS\Include;..\src\platform\stdPeripheral\CMSIS\Device\ST\STM32F2xx\Include;..\src\platform\stdPeripheral\STM32F2xx_HAL_Driver\Inc;..\src\platform\stdPeripheral\STM32F2xx_HAL_Driver\Inc\Legacy;..\src\platform\middleware\FatFs\FATFS\App;..\src\platform\middleware\FatFs\FATFS\Target;..\src\platform\middleware\FatFs\inc;..\src\platform\middleware\LwIP\src\include\lwip\apps;..\src\platform\middleware\LwIP\src\include\lwip;..\src\platform\middleware\LwIP\src\include\lwip\priv;..\src\platform\middleware\LwIP\src\include\lwip\prot;..\src\platform\middleware\LwIP\src\include\netif;..\src\platform\middleware\LwIP\src\include\posix;..\src\platform\middleware\LwIP\src\include\posix\sys;..\src\platform\middleware\LwIP\system\arch;..\src\platform\middleware\LwIP\src\include</IncludePath>
+              <IncludePath>..\src\application\app\inc;..\src\platform\driver\inc;..\src\platform\bsp\inc;..\src\platform\MCU\inc;..\src\platform\middleware\inc;..\src\platform\stdPeripheral\CMSIS\Include;..\src\platform\stdPeripheral\CMSIS\Device\ST\STM32F2xx\Include;..\src\platform\stdPeripheral\STM32F2xx_HAL_Driver\Inc;..\src\platform\stdPeripheral\STM32F2xx_HAL_Driver\Inc\Legacy;..\src\platform\middleware\FatFs\FATFS\App;..\src\platform\middleware\FatFs\FATFS\Target;..\src\platform\middleware\FatFs\inc;..\src\platform\middleware\LwIP\src\include\lwip\apps;..\src\platform\middleware\LwIP\src\include\lwip;..\src\platform\middleware\LwIP\src\include\lwip\priv;..\src\platform\middleware\LwIP\src\include\lwip\prot;..\src\platform\middleware\LwIP\src\include\netif;..\src\platform\middleware\LwIP\src\include\posix;..\src\platform\middleware\LwIP\src\include\posix\sys;..\src\platform\middleware\LwIP\system\arch;..\src\platform\middleware\LwIP\src\include;..\src\platform\middleware\STM32_USB_Host_Library\Core\Inc;..\src\platform\middleware\STM32_USB_Host_Library\Class\MSC\Inc</IncludePath>
             </VariousControls>
           </Cads>
           <Aads>
@@ -995,6 +995,61 @@
               <FileName>stm32f2xx_hal_dma_ex.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\platform\stdPeripheral\STM32F2xx_HAL_Driver\Src\stm32f2xx_hal_dma_ex.c</FilePath>
+            </File>
+            <File>
+              <FileName>stm32f2xx_hal_pcd.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\stdPeripheral\STM32F2xx_HAL_Driver\Src\stm32f2xx_hal_pcd.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>USB/CORE</GroupName>
+          <Files>
+            <File>
+              <FileName>usbh_ioreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Core\Src\usbh_ioreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_ctlreq.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Core\Src\usbh_ctlreq.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_core.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Core\Src\usbh_core.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_conf_template.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Core\Src\usbh_conf_template.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_pipes.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Core\Src\usbh_pipes.c</FilePath>
+            </File>
+          </Files>
+        </Group>
+        <Group>
+          <GroupName>USB/MSC</GroupName>
+          <Files>
+            <File>
+              <FileName>usbh_msc.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_msc_bot.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_bot.c</FilePath>
+            </File>
+            <File>
+              <FileName>usbh_msc_scsi.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\middleware\STM32_USB_Host_Library\Class\MSC\Src\usbh_msc_scsi.c</FilePath>
             </File>
           </Files>
         </Group>
