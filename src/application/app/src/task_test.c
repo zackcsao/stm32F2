@@ -22,6 +22,9 @@
 
 #include "driver.h"
 #include "lwip.h"
+#include "usbh_def.h"
+#include "usbh_msc.h"
+#include "fatfs.h"
 
 extern const SYS_FUNC sys_func;
 
@@ -31,9 +34,63 @@ extern gpio_dev_t sys_led_fault;
 		
 			
 extern uart_dev_t lcd_uart;
+typedef enum {
+	APPLICATION_IDLE = 0,  
+	APPLICATION_READY,    
+	APPLICATION_DISCONNECT,
+}MSC_ApplicationTypeDef;
 
-	
-			
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+USBH_HandleTypeDef hUSBHost;
+MSC_ApplicationTypeDef Appli_state = APPLICATION_IDLE;
+
+extern FATFS USBH_fatfs;
+extern void MSC_File_Operations(void);
+/* Private function prototypes -----------------------------------------------*/
+static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id);
+
+void task_test_init(void)
+{
+	/* Init Host Library */
+	USBH_Init(&hUSBHost, USBH_UserProcess, 0);
+
+	/* Add Supported Class */
+	USBH_RegisterClass(&hUSBHost, USBH_MSC_CLASS);
+
+	/* Start Host Process */
+	USBH_Start(&hUSBHost);
+	  /* Register the file system object to the FatFs module */
+
+}
+/**
+  * @brief  User Process
+  * @param  phost: Host Handle
+  * @param  id: Host Library user message ID
+  * @retval None
+  */
+static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id)
+{
+	switch(id){ 
+	case HOST_USER_SELECT_CONFIGURATION:
+		break;
+
+	case HOST_USER_DISCONNECTION:
+		Appli_state = APPLICATION_DISCONNECT;
+		break;
+
+	case HOST_USER_CLASS_ACTIVE:
+		Appli_state = APPLICATION_READY;
+		break;
+
+	case HOST_USER_CONNECTION:
+		break;
+
+	default:
+		break; 
+	}
+}			
 void task_test(void)
 {
 //	OS_ERR  err;
@@ -62,6 +119,8 @@ void task_test(void)
 		sys_func.feed_wdg();
 		
 		MX_LWIP_Process();
+		/* USB Host Background task */
+		USBH_Process(&hUSBHost);
 		if(_sec_maintian != sys_func.sys_get_sec()){
 			_sec_maintian = sys_func.sys_get_sec();
 			//周期性显示LED的开关
@@ -78,7 +137,11 @@ void task_test(void)
 //			gsm_power_on_off(_sec_maintian);
 			//继电器依次打开，然后依次关闭
 //			do_test(_sec_maintian);
-		
+			if(f_mount(&USBH_fatfs, "", 0) != FR_OK){  
+				printf("ERROR : Cannot Initialize FatFs! \n");
+			}else {
+				MSC_File_Operations();
+			}	
 		}
 		//打印4G模块的开机信息
 		len = get_recv_size(&lcd_uart);

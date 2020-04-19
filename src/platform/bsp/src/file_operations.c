@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    USB_Host/MSC_Standalone/Inc/usbh_conf.h
+  * @file    USB_Host/MSC_Standalone/Src/file_operations.c 
   * @author  MCD Application Team
   * @version V1.0.1
   * @date    01-July-2016
-  * @brief   General low level driver configuration
+  * @brief   Write/read file on the disk.
   ******************************************************************************
   * @attention
   *
@@ -44,70 +44,87 @@
   *
   ******************************************************************************
   */
-  
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USBH_CONF_H
-#define __USBH_CONF_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f2xx_hal.h"
+#include "fatfs.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+FATFS USBH_fatfs;
+FIL MyFile;
+FRESULT res;
+uint32_t bytesWritten;
+uint8_t rtext[200];
+uint8_t wtext[] = "USB Host Library : Mass Storage Example";
 
-/* Exported types ------------------------------------------------------------*/
-#define USBH_MAX_NUM_ENDPOINTS                2
-#define USBH_MAX_NUM_INTERFACES               2
-#define USBH_MAX_NUM_CONFIGURATION            1
-#define USBH_MAX_NUM_SUPPORTED_CLASS          1
-#define USBH_KEEP_CFG_DESCRIPTOR              0
-#define USBH_MAX_SIZE_CONFIGURATION           0x200
-#define USBH_MAX_DATA_BUFFER                  0x200
-#define USBH_DEBUG_LEVEL                      2
-#define USBH_USE_OS                           0
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* CMSIS OS macros */   
-#if (USBH_USE_OS == 1)
-  #include "cmsis_os.h"
-  #define   USBH_PROCESS_PRIO    osPriorityNormal
-#endif
-
-/* Memory management macros */   
-#define USBH_malloc               malloc
-#define USBH_free                 free
-#define USBH_memset               memset
-#define USBH_memcpy               memcpy
+/**
+  * @brief  Files operations: Read/Write and compare
+  * @param  None
+  * @retval None
+  */
+void MSC_File_Operations(void)
+{
+  uint16_t bytesread;
+  
+  printf("INFO : FatFs Initialized \n");
+  
+//  if(f_open(&MyFile, "0:USBHost.txt",FA_CREATE_ALWAYS | FA_WRITE) != FR_OK) 
+    if(f_open(&MyFile, "USBHost.txt",FA_CREATE_ALWAYS | FA_WRITE) != FR_OK) 
+  {
+    printf("Cannot Open 'USBHost.txt' file \n");
+  }
+  else
+  {
+    printf("INFO : 'USBHost.txt' opened for write  \n");
+    res= f_write (&MyFile, wtext, sizeof(wtext), (void *)&bytesWritten); 
+    f_close(&MyFile);
     
-/* DEBUG macros */   
-#if (USBH_DEBUG_LEVEL > 0)
-#define USBH_UsrLog(...)   printf(__VA_ARGS__);\
-                           printf("\n");
-#else
-#define USBH_UsrLog(...)   
-#endif 
-                            
-                            
-#if (USBH_DEBUG_LEVEL > 1)
-
-#define USBH_ErrLog(...)   printf("ERROR: ") ;\
-                           printf(__VA_ARGS__);\
-                           printf("\n");
-#else
-#define USBH_ErrLog(...)   
-#endif 
-                                                      
-#if (USBH_DEBUG_LEVEL > 2)                         
-#define USBH_DbgLog(...)   printf("DEBUG : ") ;\
-                           printf(__VA_ARGS__);\
-                           printf("\n");
-#else
-#define USBH_DbgLog(...)                         
-#endif
-
-/* Exported functions ------------------------------------------------------- */
-
-#endif /* __USBH_CONF_H */
+    if((bytesWritten == 0) || (res != FR_OK)) /*EOF or Error*/
+    {
+      printf("Cannot Write on the  'USBHost.txt' file \n");
+    }
+    else
+    {
+      if(f_open(&MyFile, "0:USBHost.txt", FA_READ) != FR_OK) 
+      {
+        printf("Cannot Open 'USBHost.txt' file for read.\n"); 
+      }
+      else
+      {
+        printf("INFO : Text written on the 'USBHost.txt' file \n");
+        
+        res = f_read(&MyFile, rtext, sizeof(rtext), (void *)&bytesread);
+        
+        if((bytesread == 0) || (res != FR_OK)) /*EOF or Error*/
+        {
+          printf("Cannot Read from the  'USBHost.txt' file \n"); 
+        }
+        else
+        {
+          printf("Read Text : \n"); 
+          printf((char *)rtext); 
+          printf("\n"); 
+        }
+        f_close(&MyFile);
+      }
+      /* Compare read data with the expected data */
+      if((bytesread == bytesWritten))
+      {
+        printf("INFO : FatFs data compare SUCCES");
+        printf("\n"); 
+      }
+      else
+      {
+        printf("FatFs data compare ERROR");
+        printf("\n"); 
+      }
+    }
+  }
+}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

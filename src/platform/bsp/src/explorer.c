@@ -1,10 +1,10 @@
 /**
   ******************************************************************************
-  * @file    USB_Host/MSC_Standalone/Inc/usbh_conf.h
+  * @file    USB_Host/MSC_Standalone/Src/explorer.c 
   * @author  MCD Application Team
   * @version V1.0.1
   * @date    01-July-2016
-  * @brief   General low level driver configuration
+  * @brief   Explore the USB flash disk content
   ******************************************************************************
   * @attention
   *
@@ -44,70 +44,107 @@
   *
   ******************************************************************************
   */
-  
-/* Define to prevent recursive inclusion -------------------------------------*/
-#ifndef __USBH_CONF_H
-#define __USBH_CONF_H
 
 /* Includes ------------------------------------------------------------------*/
-#include "stm32f2xx_hal.h"
+#include "fatfs.h"
+#include "usbh_def.h"
+#include "usbh_msc.h"
 #include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 
-/* Exported types ------------------------------------------------------------*/
-#define USBH_MAX_NUM_ENDPOINTS                2
-#define USBH_MAX_NUM_INTERFACES               2
-#define USBH_MAX_NUM_CONFIGURATION            1
-#define USBH_MAX_NUM_SUPPORTED_CLASS          1
-#define USBH_KEEP_CFG_DESCRIPTOR              0
-#define USBH_MAX_SIZE_CONFIGURATION           0x200
-#define USBH_MAX_DATA_BUFFER                  0x200
-#define USBH_DEBUG_LEVEL                      2
-#define USBH_USE_OS                           0
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/  
+/* Private macro -------------------------------------------------------------*/
+/* Private variables ---------------------------------------------------------*/
+/* Private function prototypes -----------------------------------------------*/
+/* Private functions ---------------------------------------------------------*/
 
-/* Exported constants --------------------------------------------------------*/
-/* Exported macro ------------------------------------------------------------*/
-/* CMSIS OS macros */   
-#if (USBH_USE_OS == 1)
-  #include "cmsis_os.h"
-  #define   USBH_PROCESS_PRIO    osPriorityNormal
+/**
+  * @brief  Displays disk content.
+  * @param  path: Pointer to root path
+  * @param  recu_level: Disk content level 
+  * @retval Operation result
+  */
+  
+  extern USBH_HandleTypeDef hUSBHost;
+FRESULT Explore_Disk(char *path, uint8_t recu_level)
+{
+  FRESULT res = FR_OK;
+  FILINFO fno;
+  DIR dir;
+  char *fn;
+  char tmp[14];
+  uint8_t line_idx = 0;
+  
+#if _USE_LFN
+  static char lfn[_MAX_LFN + 1];   /* Buffer to store the LFN */
+  fno.lfname = lfn;
+  fno.lfsize = sizeof lfn;
 #endif
-
-/* Memory management macros */   
-#define USBH_malloc               malloc
-#define USBH_free                 free
-#define USBH_memset               memset
-#define USBH_memcpy               memcpy
-    
-/* DEBUG macros */   
-#if (USBH_DEBUG_LEVEL > 0)
-#define USBH_UsrLog(...)   printf(__VA_ARGS__);\
-                           printf("\n");
+  
+  res = f_opendir(&dir, path);
+  if(res == FR_OK) 
+  {
+    while(USBH_MSC_IsReady(&hUSBHost))
+    {
+      res = f_readdir(&dir, &fno);
+      if(res != FR_OK || fno.fname[0] == 0) 
+      {
+        break;
+      }
+      if(fno.fname[0] == '.')
+      {
+        continue;
+      }
+      
+#if _USE_LFN
+      fn = *fno.lfname ? fno.lfname : fno.fname;
 #else
-#define USBH_UsrLog(...)   
-#endif 
-                            
-                            
-#if (USBH_DEBUG_LEVEL > 1)
-
-#define USBH_ErrLog(...)   printf("ERROR: ") ;\
-                           printf(__VA_ARGS__);\
-                           printf("\n");
-#else
-#define USBH_ErrLog(...)   
-#endif 
-                                                      
-#if (USBH_DEBUG_LEVEL > 2)                         
-#define USBH_DbgLog(...)   printf("DEBUG : ") ;\
-                           printf(__VA_ARGS__);\
-                           printf("\n");
-#else
-#define USBH_DbgLog(...)                         
+      fn = fno.fname;
 #endif
-
-/* Exported functions ------------------------------------------------------- */
-
-#endif /* __USBH_CONF_H */
+      strcpy(tmp, fn); 
+      
+      line_idx++;
+      if(line_idx > 9)
+      {
+        line_idx = 0;
+        printf("> Press User button \n");
+        printf("> To Continue.\n");
+        
+        /* User Button in polling */
+//        while((BSP_PB_GetState(BUTTON_USER) != SET) && (Appli_state != APPLICATION_DISCONNECT))
+//        {
+//          /* Wait for User Input */
+//        }
+      } 
+      
+      if(recu_level == 1)
+      {
+        printf("   |__");
+      }
+      else if(recu_level == 2)
+      {
+        printf("   |   |__");
+      }
+      if((fno.fattrib & 0x3f) == AM_DIR)
+      {
+        strcat(tmp, "\n"); 
+        printf((void *)tmp);
+        Explore_Disk(fn, 2);
+      }
+      else
+      {
+        strcat(tmp, "\n"); 
+        printf((void *)tmp);
+      }
+      
+      if(((fno.fattrib & 0x3f) == AM_DIR)&&(recu_level == 2))
+      {
+        Explore_Disk(fn, 2);
+      }
+    }
+    f_closedir(&dir);
+  }
+  return res;
+}
 
 /************************ (C) COPYRIGHT STMicroelectronics *****END OF FILE****/

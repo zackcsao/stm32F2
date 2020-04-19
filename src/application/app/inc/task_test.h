@@ -16,5 +16,7 @@
 *********************************************************************/
 #ifndef __TASK_TEST_H__
 #define __TASK_TEST_H__
+
+void task_test_init(void);
 void task_test(void);
 #endif

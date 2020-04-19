@@ -22,6 +22,7 @@ int main(void)
 {
 	bsp_init();
 	app_init();
+	task_test_init();
 	
 	while(1){
 		task_test();

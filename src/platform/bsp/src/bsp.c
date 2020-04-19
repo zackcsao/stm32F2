@@ -167,6 +167,10 @@ gpio_dev_t rs485_2_tr = {.port = GPIO_485_2,
 			.config = OUTPUT_PUSH_PULL,
 			.priv = NULL};
 
+gpio_dev_t pwr_usb = {.port = GPIO_PWR_USB,
+			.config = OUTPUT_OPEN_DRAIN_NO_PULL,
+			.priv = NULL};
+
 
 int32_t uart_gpio_init(uint32_t num);
 int32_t spi_gpio_init(uint8_t port);
@@ -231,6 +235,10 @@ void bsp_init(void)
 	gpio_init(&rs485_1_tr);
 	gpio_init(&rs485_2_tr);
 	
+	gpio_init(&pwr_usb);
+	
+	gpio_output_low(&pwr_lcd);
+	
 	gpio_output_low(&rs485_1_tr);
 	gpio_output_low(&rs485_2_tr);
 	gpio_output_high(&pwr_lcd);
@@ -248,7 +256,7 @@ void bsp_init(void)
 	sdio_init();
 	
 	
-	MX_FATFS_Init();
+//	MX_FATFS_Init();
 	MX_LWIP_Init();
 	tcp_echoserver_init();
 }

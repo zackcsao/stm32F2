@@ -24,8 +24,7 @@
 / Additional user header to be used  
 /-----------------------------------------------------------------------------*/
 
-#include "main.h"
-#include "stm32f4xx_hal.h"
+#include "stm32f2xx_hal.h"
 #include "bsp_driver_sd.h"
 
 /*-----------------------------------------------------------------------------/
