@@ -1,0 +1,14 @@
+.\objects\udp.o: ..\src\platform\middleware\LwIP\src\core\udp.c
+.\objects\udp.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\udp.o: ..\src\application\app\inc\lwipopts.h
+.\objects\udp.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\udp.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\udp.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\udp.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\udp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\udp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\udp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\udp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\udp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\udp.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\udp.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h

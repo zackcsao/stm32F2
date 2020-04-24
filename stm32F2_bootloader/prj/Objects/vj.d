@@ -1,0 +1,15 @@
+.\objects\vj.o: ..\src\platform\middleware\LwIP\src\netif\ppp\vj.c
+.\objects\vj.o: ..\src\platform\middleware\LwIP\src\include\netif/ppp/ppp_opts.h
+.\objects\vj.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\vj.o: ..\src\application\app\inc\lwipopts.h
+.\objects\vj.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\vj.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\vj.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\vj.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\vj.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\vj.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\vj.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\vj.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\vj.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\vj.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\vj.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h

@@ -1,0 +1,15 @@
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\src\netif\ppp\multilink.c
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\src\include\netif/ppp/ppp_opts.h
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\multilink.o: ..\src\application\app\inc\lwipopts.h
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\multilink.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\multilink.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\multilink.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\multilink.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\multilink.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\multilink.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\multilink.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h

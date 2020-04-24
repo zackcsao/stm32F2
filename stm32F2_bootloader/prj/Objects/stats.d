@@ -1,0 +1,14 @@
+.\objects\stats.o: ..\src\platform\middleware\LwIP\src\core\stats.c
+.\objects\stats.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\stats.o: ..\src\application\app\inc\lwipopts.h
+.\objects\stats.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\stats.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\stats.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\stats.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\stats.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\stats.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h

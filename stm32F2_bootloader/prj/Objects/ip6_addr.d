@@ -1,0 +1,14 @@
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\src\core\ipv6\ip6_addr.c
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\ip6_addr.o: ..\src\application\app\inc\lwipopts.h
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\ip6_addr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\ip6_addr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\ip6_addr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\ip6_addr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\ip6_addr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\ip6_addr.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\ip6_addr.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h

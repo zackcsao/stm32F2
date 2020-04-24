@@ -1,0 +1,14 @@
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\src\core\ipv4\autoip.c
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\autoip.o: ..\src\application\app\inc\lwipopts.h
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\autoip.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\autoip.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\autoip.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\autoip.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\autoip.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\autoip.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\autoip.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h

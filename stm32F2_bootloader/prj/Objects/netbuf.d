@@ -1,0 +1,14 @@
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\src\api\netbuf.c
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
+.\objects\netbuf.o: ..\src\application\app\inc\lwipopts.h
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\src\include\lwip/debug.h
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\src\include\lwip/arch.h
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\system\arch\cc.h
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\system\arch\cpu.h
+.\objects\netbuf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdlib.h
+.\objects\netbuf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
+.\objects\netbuf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stddef.h
+.\objects\netbuf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\objects\netbuf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\inttypes.h
+.\objects\netbuf.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\limits.h
+.\objects\netbuf.o: ..\src\platform\middleware\LwIP\src\include\lwip/opt.h
