@@ -17,6 +17,7 @@
 #include "app_init.h"
 #include "bsp.h"
 #include "task_test.h"
+#include "task_deal_update_fatfs.h"
 
 int main(void)
 {
@@ -26,5 +27,6 @@ int main(void)
 	
 	while(1){
 		task_test();
+		task_deal_update_fatfs();
 	}
 }

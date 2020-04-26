@@ -24,6 +24,7 @@
 #include "usbh_def.h"
 #include "usbh_msc.h"
 #include "fatfs.h"
+#include "flash.h"
 
 extern const SYS_FUNC sys_func;
 
@@ -98,6 +99,7 @@ void task_test(void)
 	uint8_t buf[128];
 	uint32_t len = 0;
 	uint32_t i = 0;
+	uint8_t pbuf[2] = {0x55,0xaa};
 //以下三行初始化的LED灯的引脚
 
 //	gpio_init(&led_alarm);
@@ -135,11 +137,11 @@ void task_test(void)
 //			gsm_power_on_off(_sec_maintian);
 			//继电器依次打开，然后依次关闭
 //			do_test(_sec_maintian);
-			if(f_mount(&USBH_fatfs, "", 0) != FR_OK){  
-				printf("ERROR : Cannot Initialize FatFs! \n");
-			}else {
-				MSC_File_Operations();
-			}	
+//			if(f_mount(&USBH_fatfs, "", 0) != FR_OK){  
+//				printf("ERROR : Cannot Initialize FatFs! \n");
+//			}else {
+//				MSC_File_Operations();
+//			}	
 		}
 		//打印4G模块的开机信息
 		len = get_recv_size(&lcd_uart);

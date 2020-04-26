@@ -274,7 +274,7 @@
               <OCR_RVCT4>
                 <Type>1</Type>
                 <StartAddress>0x8000000</StartAddress>
-                <Size>0x40000</Size>
+                <Size>0x10000</Size>
               </OCR_RVCT4>
               <OCR_RVCT5>
                 <Type>1</Type>
@@ -395,6 +395,11 @@
               <FileName>main.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\application\app\src\main.c</FilePath>
+            </File>
+            <File>
+              <FileName>task_deal_update_fatfs.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\application\app\src\task_deal_update_fatfs.c</FilePath>
             </File>
           </Files>
         </Group>

@@ -19,6 +19,13 @@
 #include "stm32f2xx_hal.h"
 #include "stm32f2xx_ll_system.h"
 
+const FLASH_ROM_FUNC flash_ROM_func = {
+	stm32f429_flash_init,
+	flash_ROM_ioctrl,
+	write_ROM_multibyte,
+	read_ROM_multibyte,
+	jump_to_app
+};
 
 
 const uint16_t flash_sector[] = {
@@ -38,9 +45,9 @@ const uint16_t flash_sector[] = {
 };
 void stm32f429_flash_init(void)
 {
-	LL_FLASH_SetLatency(LL_FLASH_LATENCY_4);
+	LL_FLASH_SetLatency(LL_FLASH_LATENCY_7);
 
-	if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_4){
+	if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_7){
 		while(1);//Error_Handler();  
 	}
 }
@@ -64,7 +71,7 @@ static uint32_t stm32f429_flash_erase_sector(uint32_t sector)
 	flash_erase.Banks = FLASH_BANK_1;
 	flash_erase.Sector = flash_sector[sector];
 	flash_erase.NbSectors = 1;
-	flash_erase.VoltageRange = FLASH_VOLTAGE_RANGE_4;
+	flash_erase.VoltageRange = FLASH_VOLTAGE_RANGE_3;
 	if(3 < sector){
 		return (uint32_t)HAL_FLASHEx_Erase(&flash_erase,&tmp);
 	}else{

@@ -29,9 +29,9 @@ void system_clock_init(void)
 	LL_APB2_GRP1_EnableClock(LL_APB2_GRP1_PERIPH_SYSCFG);
 	LL_APB1_GRP1_EnableClock(LL_APB1_GRP1_PERIPH_PWR);
 	NVIC_SetPriorityGrouping(3);
-	LL_FLASH_SetLatency(LL_FLASH_LATENCY_4);
+	LL_FLASH_SetLatency(LL_FLASH_LATENCY_7);
 
-	if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_4){
+	if(LL_FLASH_GetLatency() != LL_FLASH_LATENCY_7){
 		while(1);//Error_Handler();  
 	}
 
@@ -41,14 +41,14 @@ void system_clock_init(void)
 	/* Wait till HSE is ready */
 	while(LL_RCC_HSE_IsReady() != 1);
 
-	LL_RCC_LSI_Enable();
+//	LL_RCC_LSI_Enable();
 
-	/* Wait till LSI is ready */
-	while(LL_RCC_LSI_IsReady() != 1);
-	LL_PWR_EnableBkUpAccess();
-	LL_RCC_SetRTCClockSource(LL_RCC_RTC_CLKSOURCE_LSI);
-	
-	LL_RCC_EnableRTC();
+//	/* Wait till LSI is ready */
+//	while(LL_RCC_LSI_IsReady() != 1);
+//	LL_PWR_EnableBkUpAccess();
+//	LL_RCC_SetRTCClockSource(LL_RCC_RTC_CLKSOURCE_LSI);
+//	
+//	LL_RCC_EnableRTC();
 	RCC_OscInitTypeDef RCC_OscInitStruct;
 
 	/* Enable HSE Oscillator and activate PLL with HSE as source */
