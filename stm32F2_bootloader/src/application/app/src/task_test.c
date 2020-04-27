@@ -93,66 +93,25 @@ static void USBH_UserProcess(USBH_HandleTypeDef *phost, uint8_t id)
 }			
 void task_test(void)
 {
-//	OS_ERR  err;
 	static uint32_t _sec_maintian = 0;
-//	struct tm _can_soft;
-	uint8_t buf[128];
-	uint32_t len = 0;
-	uint32_t i = 0;
-	uint8_t pbuf[2] = {0x55,0xaa};
-//以下三行初始化的LED灯的引脚
 
-//	gpio_init(&led_alarm);
-//	gpio_init(&led_wifi);
-////以下两行初始化4G模块的电源开关和开机引脚	
-//	gpio_init(&gpio_4g_power);
-//	gpio_init(&gpio_4g_sw);
-////以下7行初始化继电器的引脚输出
-//	gpio_init(&gpio_do1);
-//	gpio_init(&gpio_do2);
-//	gpio_init(&gpio_do3);
-//	gpio_init(&gpio_do4);
-//	gpio_init(&gpio_do5);
-//	gpio_init(&gpio_do6);
-//	gpio_init(&gpio_do7);
-//	
+	sys_func.feed_wdg();
+	
+	/* USB Host Background task */
+	USBH_Process(&hUSBHost);
+	if(_sec_maintian != sys_func.sys_get_sec()){
+		_sec_maintian = sys_func.sys_get_sec();
+		//周期性显示LED的开关
+		if(_sec_maintian%2){
+			gpio_output_low(&led_run);
+			gpio_output_low(&sys_led_run);
+			gpio_output_low(&sys_led_fault);
+		}else{
+			gpio_output_high(&led_run);
+			gpio_output_high(&sys_led_run);
+			gpio_output_high(&sys_led_fault);
+		}
 
-		sys_func.feed_wdg();
-		
-		/* USB Host Background task */
-		USBH_Process(&hUSBHost);
-		if(_sec_maintian != sys_func.sys_get_sec()){
-			_sec_maintian = sys_func.sys_get_sec();
-			//周期性显示LED的开关
-			if(_sec_maintian%2){
-				gpio_output_low(&led_run);
-				gpio_output_low(&sys_led_run);
-				gpio_output_low(&sys_led_fault);
-			}else{
-				gpio_output_high(&led_run);
-				gpio_output_high(&sys_led_run);
-				gpio_output_high(&sys_led_fault);
-			}
-			//4G模块开机
-//			gsm_power_on_off(_sec_maintian);
-			//继电器依次打开，然后依次关闭
-//			do_test(_sec_maintian);
-//			if(f_mount(&USBH_fatfs, "", 0) != FR_OK){  
-//				printf("ERROR : Cannot Initialize FatFs! \n");
-//			}else {
-//				MSC_File_Operations();
-//			}	
-		}
-		//打印4G模块的开机信息
-		len = get_recv_size(&lcd_uart);
-		if(len > 0 ){
-			memset(buf,0,128);
-			uart_recv(&lcd_uart,buf,len);
-			printf("len=%d\r\n",len);
-			for(i = 0;i < len;i++){
-				printf("%c",buf[i]);
-			}
-			
-		}
+	}
 		
 }

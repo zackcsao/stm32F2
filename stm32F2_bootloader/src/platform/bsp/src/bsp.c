@@ -46,29 +46,29 @@ uart_dev_t print_uart = {.port = E_COM3,
 			.buf_size = 128},
 			.priv = NULL};
 
-uart_dev_t rs485_1_uart = {.port = E_COM1,
-		.config = {
-			.baud_rate= 9600,
-			.data_width = DATA_WIDTH_8BIT,
-			.parity = NO_PARITY,
-			.stop_bits = STOP_BITS_1,
-			.flow_control = FLOW_CONTROL_DISABLED,
-			.mode = MODE_TX_RX,
-			.buf = buf_com1,
-			.buf_size = 128},
-			.priv = NULL};
+//uart_dev_t rs485_1_uart = {.port = E_COM1,
+//		.config = {
+//			.baud_rate= 9600,
+//			.data_width = DATA_WIDTH_8BIT,
+//			.parity = NO_PARITY,
+//			.stop_bits = STOP_BITS_1,
+//			.flow_control = FLOW_CONTROL_DISABLED,
+//			.mode = MODE_TX_RX,
+//			.buf = buf_com1,
+//			.buf_size = 128},
+//			.priv = NULL};
 
-uart_dev_t rs485_2_uart = {.port = E_COM2,
-		.config = {
-			.baud_rate= 9600,
-			.data_width = DATA_WIDTH_8BIT,
-			.parity = NO_PARITY,
-			.stop_bits = STOP_BITS_1,
-			.flow_control = FLOW_CONTROL_DISABLED,
-			.mode = MODE_TX_RX,
-			.buf = buf_com2,
-			.buf_size = 128},
-			.priv = NULL};
+//uart_dev_t rs485_2_uart = {.port = E_COM2,
+//		.config = {
+//			.baud_rate= 9600,
+//			.data_width = DATA_WIDTH_8BIT,
+//			.parity = NO_PARITY,
+//			.stop_bits = STOP_BITS_1,
+//			.flow_control = FLOW_CONTROL_DISABLED,
+//			.mode = MODE_TX_RX,
+//			.buf = buf_com2,
+//			.buf_size = 128},
+//			.priv = NULL};
 
 uart_dev_t lcd_uart = {.port = E_COM6,
 		.config = {
@@ -113,28 +113,28 @@ i2c_gpio_t i2c_gpio = {
 
 
 
-spi_dev_t fram_spi = {
-		.port = FRAM_SPI_PORT,
-		.config = {.type = E_SPI_MODE_MASTER,
-			.freq = E_SPI_BAUD_1_256_FPCLK,
-			.mode = MODE3,
-			.bit_order = E_SPI_MSB_FIRST,
-			.cs_type = E_SPI_NSS_SOFT,
-			.transfer_mode = E_SPI_FULL_DUPLEX,
-			.data_length = E_SPI_DATAWIDTH_8BIT},
-		.priv = NULL};
-		
+//spi_dev_t fram_spi = {
+//		.port = FRAM_SPI_PORT,
+//		.config = {.type = E_SPI_MODE_MASTER,
+//			.freq = E_SPI_BAUD_1_256_FPCLK,
+//			.mode = MODE3,
+//			.bit_order = E_SPI_MSB_FIRST,
+//			.cs_type = E_SPI_NSS_SOFT,
+//			.transfer_mode = E_SPI_FULL_DUPLEX,
+//			.data_length = E_SPI_DATAWIDTH_8BIT},
+//		.priv = NULL};
+//		
 
-spi_dev_t flash_spi = {
-		.port = E_SPI5,
-		.config = {.type = E_SPI_MODE_MASTER,
-			.freq = E_SPI_BAUD_1_256_FPCLK,
-			.mode = MODE3,
-			.bit_order = E_SPI_MSB_FIRST,
-			.cs_type = E_SPI_NSS_SOFT,
-			.transfer_mode = E_SPI_FULL_DUPLEX,
-			.data_length = E_SPI_DATAWIDTH_8BIT},
-		.priv = NULL};
+//spi_dev_t flash_spi = {
+//		.port = E_SPI5,
+//		.config = {.type = E_SPI_MODE_MASTER,
+//			.freq = E_SPI_BAUD_1_256_FPCLK,
+//			.mode = MODE3,
+//			.bit_order = E_SPI_MSB_FIRST,
+//			.cs_type = E_SPI_NSS_SOFT,
+//			.transfer_mode = E_SPI_FULL_DUPLEX,
+//			.data_length = E_SPI_DATAWIDTH_8BIT},
+//		.priv = NULL};
 			
 static void irq_sec(void);	
 timer_dev_t tim2 = {
@@ -158,13 +158,13 @@ gpio_dev_t pwr_lcd = {.port = GPIO_PWR_LCD,
 			.config = OUTPUT_PUSH_PULL,
 			.priv = NULL};
 
-gpio_dev_t rs485_1_tr = {.port = GPIO_485_1,
-			.config = OUTPUT_PUSH_PULL,
-			.priv = NULL};
+//gpio_dev_t rs485_1_tr = {.port = GPIO_485_1,
+//			.config = OUTPUT_PUSH_PULL,
+//			.priv = NULL};
 
-gpio_dev_t rs485_2_tr = {.port = GPIO_485_2,
-			.config = OUTPUT_PUSH_PULL,
-			.priv = NULL};
+//gpio_dev_t rs485_2_tr = {.port = GPIO_485_2,
+//			.config = OUTPUT_PUSH_PULL,
+//			.priv = NULL};
 
 gpio_dev_t pwr_usb = {.port = GPIO_PWR_USB,
 			.config = OUTPUT_OPEN_DRAIN_NO_PULL,
@@ -211,17 +211,19 @@ void bsp_init(void)
 {	
 	system_clock_init();
 	system_tick_init();
+	gpio_init(&pwr_usb);
+	gpio_output_low(&pwr_usb);
 	
 	uart_gpio_init(print_uart.port);
 	uart_init(&print_uart);
 	uart_gpio_init(lcd_uart.port);
 	uart_init(&lcd_uart);
 	
-	uart_gpio_init(rs485_1_uart.port);
-	uart_init(&rs485_1_uart);
-	
-	uart_gpio_init(rs485_2_uart.port);
-	uart_init(&rs485_2_uart);
+//	uart_gpio_init(rs485_1_uart.port);
+//	uart_init(&rs485_1_uart);
+//	
+//	uart_gpio_init(rs485_2_uart.port);
+//	uart_init(&rs485_2_uart);
 	
 	gpio_init(&led_run);
 	gpio_init(&sys_led_run);
@@ -229,38 +231,17 @@ void bsp_init(void)
 	
 	gpio_init(&pwr_lcd);
 	
-	gpio_init(&rs485_1_tr);
-	gpio_init(&rs485_2_tr);
+//	gpio_init(&rs485_1_tr);
+//	gpio_init(&rs485_2_tr);
 	
-	gpio_init(&pwr_usb);
 	
-	gpio_output_low(&pwr_lcd);
 	
-	gpio_output_low(&rs485_1_tr);
-	gpio_output_low(&rs485_2_tr);
 	gpio_output_high(&pwr_lcd);
-	
-//	uart_send(&lcd_uart,(uint8_t *)"CIR(10,10,3,1);\r\n",strlen("CIR(10,10,3,1);\r\n"));
-	uart_send(&lcd_uart,(uint8_t *)"CLR(0);SBC(3);DC24(0,100,'Uart œ‘ æ∆¡',1);DC24(0,100,'Uart œ‘ æ∆¡0',1);\r\n",
-				strlen("CLR(0);SBC(3);DC24(0,100,'Uart œ‘ æ∆¡',1);DC24(0,100,'Uart œ‘ æ∆¡0',1);\r\n"));
-	uart_send(&lcd_uart,(uint8_t *)"CLR(0);SBC(3);DC24(0,100,'Uart œ‘ æ∆¡',1);DC24(0,100,'Uart œ‘ æ∆¡1',1);\r\n",
-				strlen("CLR(0);SBC(3);DC24(0,100,'Uart œ‘ æ∆¡',1);DC24(0,100,'Uart œ‘ æ∆¡1',1);\r\n"));
-	uart_send(&lcd_uart,(uint8_t *)"CLR(0);SBC(3);DC24(0,100,'Uart œ‘ æ∆¡',1);DC24(0,100,'Uart œ‘ æ∆¡2',1);\r\n",
-				strlen("CLR(0);SBC(3);DC24(0,100,'Uart œ‘ æ∆¡',1);DC24(0,100,'Uart œ‘ æ∆¡2',1);\r\n"));
-
-//	uart_send(&lcd_uart,(uint8_t *)"CLR(0);SBC(3);DC12(0,0,'Uart œ‘ æ∆¡',1);DC24(0,20,'Uart œ‘ æ∆¡2',1);DC32(0,48,'Uart œ‘ æ∆¡3',1);DCV16(0,84,'Uart œ‘ æ∆¡4',1);DCV24(0,104,'Uart œ‘ æ∆¡5',1);DCV32(0,132,'Uart œ‘ æ∆¡6',1);PL(0,170,175,170,1);BOXF(110,180,170,210,1);CIR(50,195,20,1);\r\n",
-//				strlen("CLR(0);SBC(3);DC16(0,0,'Uart œ‘ æ∆¡',1);DC24(0,20,'Uart œ‘ æ∆¡2',1);DC32(0,48,'Uart œ‘ æ∆¡3',1);DCV16(0,84,'Uart œ‘ æ∆¡4',1);DCV24(0,104,'Uart œ‘ æ∆¡5',1);DCV32(0,132,'Uart œ‘ æ∆¡6',1);PL(0,170,175,170,1);BOXF(110,180,170,210,1);CIR(50,195,20,1);\r\n"));
-
 
 //	timer_init(&tim2);
 	
 	rtc_i2c_init();
-//	eth_gpio_init();
-//	sdio_gpio_init();
-//	sdio_init();
-	
-	
-//	MX_FATFS_Init();
+
 }
 
 static void feed_wdg(void)
@@ -293,8 +274,8 @@ int32_t rtc_i2c_init(void)
 	gpio_enable_irq(&gpio_rtc_int, IRQ_TRIGGER_FALLING_EDGE, rtc_int_func);
 	
 	gpio_init(&gpio_rtc_int);
-	spi_gpio_init(flash_spi.port);
-	spi_init(&flash_spi);
+//	spi_gpio_init(flash_spi.port);
+//	spi_init(&flash_spi);
 
 
 	ret = 0;
