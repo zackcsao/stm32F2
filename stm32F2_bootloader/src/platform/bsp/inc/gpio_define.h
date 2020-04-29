@@ -291,64 +291,6 @@
 // </h>
 #define GPIO_SYS_FAULT		62
 
-// <h> KEY_OUT1
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_OUT1		105
-
-
-// <h> KEY_OUT2
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_OUT2		106
-
-
-// <h> KEY_OUT3
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_OUT3		107
-
-
-// <h> KEY_OUT4
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_OUT4		108
-
-
-// <h> KEY_OUT5
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_OUT5		109
-
-
-// <h> KEY_IN1
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_IN1		101
-
-// <h> KEY_IN2
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_IN2		102
-
-// <h> KEY_IN3
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_IN3		103
-
-// <h> KEY_IN4
-// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
-// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
-// </h>
-#define GPIO_KEY_IN4		104
 
 // <h> 运行灯
 // <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
@@ -380,6 +322,12 @@
 // <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
 // </h>
 #define GPIO_EEPROM_CS		4
+
+// <h> EEPROM_WP
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_EEPROM_WP		20
 
 // <h> BUZZ
 // <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH <8=> GPIOI 
@@ -791,6 +739,68 @@
 #define GPIO_USB_ID_AF		10
 // </e>
 
+
+// <e1> 矩阵键盘
+
+// <h> 矩阵键盘行1
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_LINE_1		101
+
+// <h> 矩阵键盘行2
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_LINE_2		102
+
+// <h> 矩阵键盘行3
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_LINE_3		103
+
+// <h> 矩阵键盘行4
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_LINE_4		104
+
+// <h> 矩阵键盘列1
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_ROW_1		105
+
+// <h> 矩阵键盘列2
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_ROW_2		106
+
+
+// <h> 矩阵键盘列3
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_ROW_3		107
+
+
+// <h> 矩阵键盘列4
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_ROW_4		108
+
+
+// <h> 矩阵键盘列5
+// <o0.4..7>端口	<0=> GPIOA <1=> GPIOB  <2=> GPIOC  <3=> GPIOD  <4=> GPIOE  <5=> GPIOF  <6=> GPIOG  <7=> GPIOH 
+// <o0.0..3>引脚	<0=> PIN0 <1=> PIN1 <2=> PIN2 <3=> PIN3 <4=> PIN4 <5=> PIN5 <6=> PIN6 <7=> PIN7 <8=> PIN8 <9=> PIN9 <10=> PIN10 <11=> PIN11 <12=> PIN12 <13=> PIN13 <14=> PIN14 <15=> PIN15
+// </h>
+#define GPIO_KEY_ROW_5		109
+
+
+// </e>
 // <<< end of configuration section >>>
 #endif //__GPIO_DEFINE_H__
 

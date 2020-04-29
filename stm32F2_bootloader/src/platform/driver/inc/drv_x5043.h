@@ -22,7 +22,7 @@
 #include <stdint.h>
 
 typedef enum {
-	E_TIMEOUT_1_4S,
+	E_TIMEOUT_1_6S,
 	E_TIMEOUT_600MS,
 	E_TIMEOUT_200MS,
 	E_WDG_DISABLE
@@ -42,14 +42,6 @@ typedef enum {
 	E_CMD_SET_WDG,			//ÅäÖÃ¿´ÃÅ¹·×´Ì¬
 	E_CMD_GET_STATUS		//»ñÈ¡¼Ä´æÆ÷×´Ì¬
 }IOCTRL_X5043;
-
-typedef struct {
-	uint8_t wip:1;
-	uint8_t wel:1;
-	uint8_t bl:2;
-	uint8_t wd:2;
-	uint8_t reservd:2;
-}X5043_REG_STATUS;
 
 typedef struct {
 	uint8_t wdg;

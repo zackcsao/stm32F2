@@ -25,13 +25,15 @@
 #include "usbh_def.h"
 #include "usbh_msc.h"
 #include "fatfs.h"
+#include "drv_x5043.h"
 
 extern const SYS_FUNC sys_func;
 
 extern gpio_dev_t led_run;
 extern gpio_dev_t sys_led_run;
 extern gpio_dev_t sys_led_fault;
-		
+
+extern x5043_dev_t  x5043;
 			
 extern uart_dev_t lcd_uart;
 typedef enum {
@@ -99,6 +101,7 @@ void task_test(void)
 	uint8_t buf[128];
 	uint32_t len = 0;
 	uint32_t i = 0;
+	uint8_t tmp8 = 0;
 //以下三行初始化的LED灯的引脚
 
 //	gpio_init(&led_alarm);
@@ -120,9 +123,18 @@ void task_test(void)
 		
 		MX_LWIP_Process();
 		/* USB Host Background task */
-		USBH_Process(&hUSBHost);
+//		USBH_Process(&hUSBHost);
 		if(_sec_maintian != sys_func.sys_get_sec()){
 			_sec_maintian = sys_func.sys_get_sec();
+					
+			x5043_read(&x5043,0,&tmp8);
+			printf("11111tmp8 = 0x%02x\r\n",tmp8);
+			x5043_read(&x5043,1,&tmp8);
+			printf("11111tmp8 = 0x%02x\r\n",tmp8);
+			x5043_read(&x5043,2,&tmp8);
+			printf("11111tmp8 = 0x%02x\r\n",tmp8);
+			x5043_read(&x5043,3,&tmp8);
+			printf("11111tmp8 = 0x%02x\r\n",tmp8);
 			//周期性显示LED的开关
 			if(_sec_maintian%2){
 				gpio_output_low(&led_run);
@@ -137,11 +149,7 @@ void task_test(void)
 //			gsm_power_on_off(_sec_maintian);
 			//继电器依次打开，然后依次关闭
 //			do_test(_sec_maintian);
-			if(f_mount(&USBH_fatfs, "", 0) != FR_OK){  
-				printf("ERROR : Cannot Initialize FatFs! \n");
-			}else {
-				MSC_File_Operations();
-			}	
+	
 		}
 		//打印4G模块的开机信息
 		len = get_recv_size(&lcd_uart);

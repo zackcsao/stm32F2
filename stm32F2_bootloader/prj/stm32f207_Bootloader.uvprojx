@@ -557,6 +557,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\platform\driver\src\drv_8025t.c</FilePath>
             </File>
+            <File>
+              <FileName>drv_x5043.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\driver\src\drv_x5043.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>

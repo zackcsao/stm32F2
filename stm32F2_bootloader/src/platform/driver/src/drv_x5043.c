@@ -31,6 +31,13 @@
 #define CMD_WRITE_L		0x02
 #define CMD_WRITE_H		0x0A
 
+typedef struct {
+	uint8_t wip:1;
+	uint8_t wel:1;
+	uint8_t bl:2;
+	uint8_t wd:2;
+	uint8_t reservd:2;
+}X5043_REG_STATUS;
 
 
 static int32_t x5043_enable_write(x5043_dev_t *dev)
@@ -148,15 +155,14 @@ int32_t x5043_init(x5043_dev_t *dev)
 int32_t x5043_write(x5043_dev_t *dev,uint16_t address,uint8_t byte)
 {
 	int32_t ret = - EPERM;
-	X5043_REG_STATUS tmp8 = {0};
 	
 	if(NULL == dev){
 		return ret;
 	}
-	gpio_output_high(dev->config.wp);
 	x5043_enable_write(dev);
 	
 	gpio_output_low(dev->config.cs);
+	gpio_output_high(dev->config.wp);
 	if( address&0x0001 ){
 		spi_send_recv(dev->config.spi,CMD_WRITE_H);
 	}else{
@@ -164,11 +170,8 @@ int32_t x5043_write(x5043_dev_t *dev,uint16_t address,uint8_t byte)
 	}
 	spi_send_recv(dev->config.spi,(uint8_t)(address>>1));
 	spi_send_recv(dev->config.spi,byte);
-	gpio_output_high(dev->config.cs);
-	do{
-		x5043_read_status(dev,(uint8_t *)&tmp8);
-	}while(tmp8.wip == 1);
 	gpio_output_low(dev->config.wp);
+	gpio_output_high(dev->config.cs);
 	
 	ret = 0;
 	return ret;

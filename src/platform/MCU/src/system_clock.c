@@ -79,6 +79,7 @@ void system_clock_init(void)
 	LL_SYSTICK_SetClkSource(LL_SYSTICK_CLKSOURCE_HCLK);
 	LL_SetSystemCoreClock(120000000);
 	LL_SYSTICK_EnableIT();
+	__enable_irq();
 
 }
 

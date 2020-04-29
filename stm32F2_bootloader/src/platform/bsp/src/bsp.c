@@ -25,6 +25,7 @@
 //#endif
 #include <string.h>
 #include "fatfs.h"
+#include "drv_x5043.h"
 
 
 uint8_t buf_com6[128];
@@ -170,7 +171,36 @@ gpio_dev_t pwr_usb = {.port = GPIO_PWR_USB,
 			.config = OUTPUT_OPEN_DRAIN_NO_PULL,
 			.priv = NULL};
 
+gpio_dev_t eeprom_cs = {.port = GPIO_EEPROM_CS,
+			.config = OUTPUT_OPEN_DRAIN_NO_PULL,
+			.priv = NULL};
 
+gpio_dev_t eeprom_wp = {.port = GPIO_EEPROM_WP,
+			.config = OUTPUT_PUSH_PULL,
+			.priv = NULL};
+
+
+spi_dev_t eeprom_spi = {
+		.port = E_SPI1,
+		.config = {.type = E_SPI_MODE_MASTER,
+			.freq = E_SPI_BAUD_1_256_FPCLK,
+			.mode = MODE3,
+			.bit_order = E_SPI_MSB_FIRST,
+			.cs_type = E_SPI_NSS_SOFT,
+			.transfer_mode = E_SPI_FULL_DUPLEX,
+			.data_length = E_SPI_DATAWIDTH_8BIT},
+		.priv = NULL};
+
+x5043_dev_t  x5043 = {
+	.port = 0,
+	.config = {.wdg = E_WDG_DISABLE,
+			.protect = E_PROTECT_NONE,
+			.wp = &eeprom_wp,
+			.cs = &eeprom_cs,
+			.spi = &eeprom_spi
+	},
+	.priv = NULL
+};
 int32_t uart_gpio_init(uint32_t num);
 int32_t spi_gpio_init(uint8_t port);
 
@@ -208,7 +238,10 @@ static void irq_sec(void)
 }
 
 void bsp_init(void)
-{	
+{
+	uint8_t tmp8 = 0;
+	
+
 	system_clock_init();
 	system_tick_init();
 	gpio_init(&pwr_usb);
@@ -241,6 +274,20 @@ void bsp_init(void)
 //	timer_init(&tim2);
 	
 	rtc_i2c_init();
+	
+	spi_gpio_init(eeprom_spi.port);
+	x5043_init(&x5043);
+	
+	x5043_ioctrl(&x5043,E_CMD_GET_STATUS,&tmp8);
+	printf("tmp8 = 0x%02x\r\n",tmp8);
+	tmp8 = E_WDG_DISABLE;
+	x5043_ioctrl(&x5043,E_CMD_SET_WDG,&tmp8);
+	x5043_ioctrl(&x5043,E_CMD_GET_STATUS,&tmp8);
+	printf("tmp8 = 0x%02x\r\n",tmp8);
+	tmp8 = E_WDG_DISABLE;
+	x5043_ioctrl(&x5043,E_CMD_SET_WDG,&tmp8);
+	x5043_ioctrl(&x5043,E_CMD_GET_STATUS,&tmp8);
+	printf("tmp8 = 0x%02x\r\n",tmp8);
 
 }
 

@@ -27,10 +27,10 @@ const uint32_t KEY_NUM[6] = {0x0f,0x17,0x1b,0x1d,0x1e};
 const uint32_t KEY_NUM_LINE[4] = {0x0e,0x0d,0x0b,0x07};
 const uint32_t KEY_NUM_ROW[6] = {0x1e,0x1d,0x1b,0x17,0x0f,0x1f};
 
-const uint8_t KEY[4][6] = {{1,2,3,11,15,19},
-			{4,5,6,12,16,20},
-			{7,8,9,13,17,21},
-			{0,10,14,18,22,23}};
+const uint8_t KEY[4][6] = {{13,17,16,14,15,0},
+			{1,4,7,10,0,0},
+			{2,5,8,11,0,0},
+			{3,6,9,12,0,0}};
 
 extern SYS_FUNC sys_func;
 extern fifo_t key_fifo;
@@ -42,8 +42,8 @@ void task_keyboard(void)
 	
 	uint32_t i = 0,j = 0;
 	
-	if(_sec_key != sys_func.sys_get_sec()){
-		_sec_key = sys_func.sys_get_sec();
+	if(300 < sys_func.sys_get_msec() - _sec_key){
+		_sec_key = sys_func.sys_get_msec();
 		line = keyboard_get_line();
 		row = keyboard_get_row();
 		
@@ -60,13 +60,13 @@ void task_keyboard(void)
 
 		
 		
-		printf("line = %02X\r\n",keyboard_get_line());
-		printf("row = %02X\r\n",keyboard_get_row());
+//		printf("line = %02X\r\n",keyboard_get_line());
+//		printf("row = %02X\r\n",keyboard_get_row());
 		if((i < 4) &&(j < 6)){
 			printf("key[%d][%d] = %d\r\n",i,j,KEY[i][j]);
 			fifo_write(&key_fifo,&KEY[i][j],1);
 		}else {
-			printf("input nothing!\r\n");
+//			printf("input nothing!\r\n");
 		}
 	}
 	
