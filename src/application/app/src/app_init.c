@@ -16,6 +16,7 @@
 *********************************************************************/
 
 #include "app_init.h"
+#include "fifo.h"
 
 #include <stdio.h>
 
@@ -24,6 +25,11 @@ const S_VERSION gs_ver = {
 	{0,0,1},   //X.Y.ZZ 硬件版本号
 	{0,0,1}     //X.Y.ZZ 软件版本号
 };
+
+#define KEY_FIFO_MAX		64
+static uint8_t _key_buf[KEY_FIFO_MAX];
+
+fifo_t key_fifo;
 
 void system_init_info(void)
 {
@@ -38,5 +44,6 @@ void system_init_info(void)
 void app_init(void)
 {
 	system_init_info();
+	fifo_init(&key_fifo,_key_buf,KEY_FIFO_MAX);
 }
 

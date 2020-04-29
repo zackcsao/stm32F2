@@ -184,6 +184,7 @@
             <hadXRAM>0</hadXRAM>
             <uocXRam>0</uocXRam>
             <RvdsVP>0</RvdsVP>
+            <RvdsMve>0</RvdsMve>
             <hadIRAM2>0</hadIRAM2>
             <hadIROM2>0</hadIROM2>
             <StupSel>8</StupSel>
@@ -411,6 +412,11 @@
               <FileType>1</FileType>
               <FilePath>..\src\application\app\src\main.c</FilePath>
             </File>
+            <File>
+              <FileName>task_keyboard.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\application\app\src\task_keyboard.c</FilePath>
+            </File>
           </Files>
         </Group>
         <Group>
@@ -510,6 +516,16 @@
               <FileName>drv_8025t.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\src\platform\driver\src\drv_8025t.c</FilePath>
+            </File>
+            <File>
+              <FileName>drv_x5043.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\driver\src\drv_x5043.c</FilePath>
+            </File>
+            <File>
+              <FileName>drv_keyboard.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\src\platform\driver\src\drv_keyboard.c</FilePath>
             </File>
           </Files>
         </Group>
